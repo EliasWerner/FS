@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import App from '../src/App'
+import App from '../src/app'
 
 const server = express()
 
