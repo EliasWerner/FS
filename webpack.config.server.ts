@@ -1,27 +1,25 @@
-// webpack.config.server.js
+// tslint:disable:object-literal-sort-keys
 import webpack from 'webpack';
-const nodeExternals = require('webpack-node-externals')
-const CopyPlugin = require('copy-webpack-plugin')
-const path = require('path')
+import nodeExternals from 'webpack-node-externals';
 
-const serverConfig: webpack.Configuration = {
+const serverConfig = {
   name: 'server',
   context: __dirname,
   mode: 'production',
+  entry: ['./server/render.tsx'],
   target: 'node',
   node: {
     __dirname: false,
     __filename: false,
   },
-  entry: {
-    server: path.resolve(__dirname, 'server/server.tsx'),
-  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    path: __dirname + '/build/server',
+    publicPath: '/static/',
+    libraryTarget: 'commonjs2',
+    filename: 'render.js',
   },
   resolve: {
-    extensions: ['.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   externals: [nodeExternals()],
   module: {
@@ -42,13 +40,6 @@ const serverConfig: webpack.Configuration = {
         ],
       },
       {
-        test: /\.css$/,
-        loader: 'css-loader',
-        options: {
-          onlyLocals: true,
-        },
-      },
-      {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: 'url-loader',
         options: {
@@ -57,16 +48,20 @@ const serverConfig: webpack.Configuration = {
           name: '[name].[hash:8].[ext]',
         },
       },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        options: {
+          onlyLocals: true,
+        },
+      },
     ],
   },
   plugins: [
-    new CopyPlugin({
-      patterns: [{ context: 'server', from: 'views', to: 'views' }],
-    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),
   ],
-}
+};
 
 export default serverConfig;

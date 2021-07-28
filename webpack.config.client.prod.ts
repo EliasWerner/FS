@@ -1,21 +1,22 @@
+// tslint:disable:object-literal-sort-keys
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
-const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// tslint:disable-next-line:no-var-requires
+const ReactLoadablePlugin = require('react-loadable/webpack')
+  .ReactLoadablePlugin;
+// tslint:disable-next-line:no-var-requires
+const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 
 const clientConfig = {
   name: 'client',
   context: __dirname,
   mode: 'production',
-  entry: {
-    client: path.resolve(__dirname, 'client/client.tsx'),
-  },
+  entry: ['./src/client.tsx'],
   output: {
-    path: path.resolve(__dirname + '/dist/static'),
-    filename: '[name].[contenthash].js',
-    publicPath: '',
+    path: __dirname + '/build/client',
+    publicPath: '/static/',
+    filename: '[name]-[contenthash]-bundle.js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -59,17 +60,23 @@ const clientConfig = {
       },
       {
         test: /\.css$/,
-        use: ['css-loader'],
+        use: [ExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new WebpackManifestPlugin(), 
-    new MiniCssExtractPlugin(), 
-    new webpack.HashedModuleIdsPlugin(), 
-    //new CopyWebpackPlugin({patterns: [{ from: './src/public' }]})
+    new webpack.HashedModuleIdsPlugin(),
+    new ReactLoadablePlugin({
+      filename: './build/server/react-loadable.json',
+    }),
+    new StatsWriterPlugin({
+      filename: '../server/stats.json',
+    }),
+    new CopyWebpackPlugin([{ from: './src/public' }]),
+    new ExtractPlugin({
+      filename: '[name]-[contenthash].css',
+    }),
   ],
-}
+};
 
 export default clientConfig;

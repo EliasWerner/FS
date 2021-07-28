@@ -1,17 +1,14 @@
 import webpack from 'webpack';
-const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ReactLoadablePlugin = require('react-loadable/webpack')
+  .ReactLoadablePlugin;
 
 const clientConfig = {
   name: 'client',
   mode: 'development',
-  entry: ['webpack-hot-middleware/client', path.resolve(__dirname, 'client/client.tsx')],
+  entry: ['webpack-hot-middleware/client', './src/client.tsx'],
   output: {
-    path: path.resolve(__dirname + '/dist/static'),
-    filename: '[name].[contenthash].js',
-    publicPath: '',
+    publicPath: '/static/',
+    filename: '[name].js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -53,7 +50,13 @@ const clientConfig = {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(), new WebpackManifestPlugin(), new MiniCssExtractPlugin(), new webpack.HotModuleReplacementPlugin()],
-}
+
+  plugins: [
+    new ReactLoadablePlugin({
+      filename: './server/react-loadable.json',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+};
 
 export default clientConfig;
