@@ -8,6 +8,7 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const react_1 = __importDefault(require("react"));
 const server_1 = __importDefault(require("react-dom/server"));
+const react_router_dom_1 = require("react-router-dom");
 const app_1 = __importDefault(require("../src/app"));
 const server = express_1.default();
 server.set('view engine', 'ejs');
@@ -16,7 +17,9 @@ server.use('/', express_1.default.static(path_1.default.join(__dirname, 'static'
 const manifest = fs_1.default.readFileSync(path_1.default.join(__dirname, 'static/manifest.json'), 'utf-8');
 const assets = JSON.parse(manifest);
 server.get('/', (req, res) => {
-    const component = server_1.default.renderToString(react_1.default.createElement(app_1.default));
+    const context = {};
+    const component = server_1.default.renderToString(react_1.default.createElement(react_router_dom_1.StaticRouter, { location: req.url, context: context },
+        react_1.default.createElement(app_1.default, null)));
     res.render('client', { assets, component });
 });
 server.listen(3000, () => {

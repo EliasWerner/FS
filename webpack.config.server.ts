@@ -14,7 +14,7 @@ const serverConfig: webpack.Configuration = {
     __filename: false,
   },
   entry: {
-    server: path.resolve(__dirname, 'server/server.ts'),
+    server: path.resolve(__dirname, 'server/server.tsx'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

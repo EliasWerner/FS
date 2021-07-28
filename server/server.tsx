@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom';
 import App from '../src/app'
 
 const server = express()
@@ -19,7 +20,13 @@ const manifest = fs.readFileSync(
 const assets = JSON.parse(manifest)
 
 server.get('/', (req, res) => {
-  const component = ReactDOMServer.renderToString(React.createElement(App))
+  const context = {};
+  const component = ReactDOMServer.renderToString( 
+  <StaticRouter location={req.url} context={context}>
+    <App />
+  </StaticRouter>
+  )
+
   res.render('client', { assets, component })
 })
 

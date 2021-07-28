@@ -1,0 +1,26 @@
+.header {
+  color: white;
+  height: 10%;
+  width: 85%;
+  margin: auto;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: mediumpurple;
+}
+
+.logo {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.search {
+  padding-right: 15px;
+  padding-left: 15px;
+  align-self: center;
+  flex-grow: 8;
+  text-align: right;
+}
