@@ -8,7 +8,6 @@
     "express": "4.17.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-scripts": "4.0.3",
     "typescript": "4.3.5",
     "web-vitals": "1.1.2"
   },
@@ -19,7 +18,11 @@
     "build": "npm run build:server && npm run build:client",
     "build:client": "webpack --config ./webpack.config.client.prod.ts",
     "build:server": "tsc -p tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node dist/server.js"
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "dev:test": "cross-env NODE_ENV=development && webpack --config ./webpack.test.config.js",
+    "build:test": "cross-env NODE_ENV=production && webpack --config ./webpack.test.config.js",
+    "watch:test": "cross-env NODE_ENV=development && webpack --watch",
+    "start:test": "webpack serve --config ./webpack.test.config.js --progress"
   },
   "eslintConfig": {
     "extends": [
@@ -53,16 +56,22 @@
     "copy-webpack-plugin": "9.0.1",
     "cross-env": "7.0.3",
     "css-loader": "6.2.0",
-    "mini-css-extract-plugin": "1.6.2",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "5.3.2",
+    "mini-css-extract-plugin": "2.1.0",
     "nodemon": "2.0.12",
     "postcss-loader": "6.1.1",
+    "react-hot-loader": "^4.13.0",
     "style-loader": "3.2.1",
-    "ts-loader": "9.2.4",
+    "ts-loader": "^9.2.5",
     "url-loader": "4.1.1",
+    "webpack": "5.48.0",
     "webpack-cli": "4.7.2",
     "webpack-dev-middleware": "5.0.0",
+    "webpack-dev-server": "3.11.2",
     "webpack-hot-middleware": "2.25.0",
     "webpack-manifest-plugin": "3.2.0",
-    "webpack-node-externals": "3.0.0"
+    "webpack-node-externals": "3.0.0",
+    "xml-loader": "1.2.1"
   }
 }
