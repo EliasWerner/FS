@@ -12,7 +12,7 @@ const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
 const config = {
     mode: isDev ? 'development' : 'production',
-    entry: './client/client.tsx',
+    entry: './server/client.tsx',
     output: {
         filename: filename('js'),
         path: path.resolve(__dirname, 'dist')
