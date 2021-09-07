@@ -16,8 +16,8 @@ function App() {
   return (
     <div className="App">
         <Header />
+        <HorizontalMenu />
         <div className="content">
-          <HorizontalMenu />
           <div className="row">
             <div className="column">
               <VerticalMenu />

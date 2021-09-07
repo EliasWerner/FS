@@ -1,13 +1,16 @@
 .header {
   color: white;
-  height: 10%;
-  width: 85%;
+  width: 100%;
   margin: auto;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  background-color: mediumpurple;
 }
 
 .logo {
@@ -15,6 +18,17 @@
   margin-bottom: 10px;
   flex-grow: 1;
   text-align: left;
+
+  font-family: Georgia, serif;
+  font-size: 28px;
+  letter-spacing: 2.6px;
+  word-spacing: 4.8px;
+  color: #3E77AA;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: uppercase;
 }
 
 .search {

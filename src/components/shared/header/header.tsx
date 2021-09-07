@@ -9,10 +9,7 @@ export const Header = () => {
   return (
     <div className="header">
       <NavLink className="logo" to="/">
-        Logo
-        {
-          // <img src={Logo} alt="Mebel-online" />
-        }
+        BELMEB.BY
       </NavLink>
       <div className="search">
         <Search />

@@ -3,13 +3,13 @@
   flex-grow: 1;
   font-size: 18px;
   text-transform: uppercase;
-  color: white;
+  color: #3E77AA;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .shopping-card-icon:hover {
   text-decoration: none;
-  color: white;
 }
 
 .shopping-card-icon > svg {
@@ -17,5 +17,5 @@
 }
 
 .shopping-card-icon > span {
-  color: red;
+  color: #3E77AA;
 }
