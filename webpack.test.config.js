@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const nodeExternals = require('webpack-node-externals');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
@@ -62,7 +61,8 @@ const config = {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader']
+                    'css-loader'
+                ]
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,
