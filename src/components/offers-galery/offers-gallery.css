@@ -1,0 +1,32 @@
+.offersGallery {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.gallery {
+  width: 60%;
+  margin-right: 20px;
+}
+
+.sales {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sale1 {
+  height: 220px;
+  background-color: #3e77aa;
+  color: white;
+  border-radius: 20px;
+  width: 500px;
+}
+
+.sale2 {
+  height: 220px;
+  background-color: #3e77aa;
+  color: white;
+  border-radius: 20px;
+  width: 500px;
+}
